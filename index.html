@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ps" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#073a6b">
+<title>اسحاقزاده آنلاین معاملات</title>
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Tahoma,sans-serif;background:#f4f8fc;color:#082d55}
+header{position:sticky;top:0;z-index:8;background:#fff;padding:12px 5%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 3px 18px #1232}
+.brand{font-weight:900;font-size:20px}.brand small{display:block;color:#718096;font-size:12px}
+button{border:0;border-radius:14px;padding:12px 17px;font-weight:800;cursor:pointer}.blue{background:#073a6b;color:white}.green{background:#087a3d;color:white}
+.hero{padding:70px 5%;text-align:center;color:#fff;background:linear-gradient(135deg,#052f5f,#087a4a)}
+.hero h1{font-size:clamp(34px,7vw,68px);margin:0 0 12px}.hero p{font-size:19px}
+.search{max-width:760px;margin:25px auto 0;background:#fff;border-radius:20px;padding:8px;display:flex;gap:8px}
+.search input{flex:1;border:0;outline:0;padding:13px;font-size:16px}
+.wrap{width:min(1150px,92%);margin:auto}.mainChoices{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:-35px}
+.choice{border-radius:28px;padding:30px;min-height:220px;color:#fff;box-shadow:0 15px 35px #1233;display:flex;flex-direction:column;justify-content:end}
+.home{background:linear-gradient(135deg,#075d38,#0b9360)}.car{background:linear-gradient(135deg,#07509a,#063765)}
+.choice h2{font-size:32px;margin:0}.actions{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:22px 0}
+.action{background:white;border-radius:20px;padding:20px 10px;text-align:center;box-shadow:0 6px 20px #1231;font-weight:800}.action span{font-size:38px;display:block}
+.ai{border:2px solid #2e9cff;background:#edf8ff}.section{padding:24px 0}.section h2{font-size:28px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:#fff;border-radius:22px;padding:20px;box-shadow:0 7px 25px #1231}
+.icon{font-size:62px}.price{font-size:19px;font-weight:900;color:#087a3d;line-height:1.8}
+.modal{display:none;position:fixed;inset:0;background:#00152dcc;z-index:20;padding:18px;align-items:center;justify-content:center}.modal.on{display:flex}
+.panel{background:#fff;width:min(570px,100%);max-height:90vh;overflow:auto;border-radius:24px;padding:22px}.panel input,.panel select,.panel textarea{width:100%;padding:12px;margin:6px 0 12px;border:1px solid #ccd8e5;border-radius:12px}
+.chat{height:260px;overflow:auto;background:#f2f7fb;border-radius:15px;padding:12px;margin-bottom:10px}.msg{background:#fff;padding:10px;border-radius:12px;margin:7px 0}
+footer{margin-top:30px;background:#063765;color:#fff;padding:28px 5%}.install{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+@media(max-width:800px){.mainChoices{grid-template-columns:1fr}.actions{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:1fr}.hero{padding:55px 4%}}
+</style>
+</head>
+<body>
+<header><div class="brand">🏠🚗 اسحاقزاده آنلاین معاملات<small>Ishaqzada Online Muamalat</small></div><button class="blue" onclick="openReg()">ثبتول</button></header>
+<section class="hero"><h1>اسحاقزاده آنلاین معاملات</h1><p>رهنمایي معاملات او موټر پلورنځی — ټول په یوه ځای کې</p>
+<div class="search"><input id="q" placeholder="کور، ځمکه، دوکان یا موټر ولټوئ"><button class="blue" onclick="searchNow()">لټون</button></div></section>
+<main class="wrap">
+<section class="mainChoices">
+<div class="choice home"><h2>🏠 رهنمایي معاملات</h2><p>کورونه، ځمکې، دوکانونه او نور جایدادونه</p><button onclick="go('estate')">اعلانونه وګورئ</button></div>
+<div class="choice car"><h2>🚗 موټر پلورنځی</h2><p>نوي او کارول شوي موټرونه</p><button onclick="go('cars')">موټرونه وګورئ</button></div>
+</section>
+<section class="actions">
+<div class="action" onclick="openReg('estate')"><span>🏢</span>د رهنمایي ثبت</div>
+<div class="action" onclick="openReg('carshop')"><span>🚘</span>د موټر پلورنځي ثبت</div>
+<div class="action ai" onclick="openAI()"><span>🤖</span>AI مرستیال</div>
+<div class="action" onclick="document.getElementById('q').focus()"><span>🔎</span>لټون</div>
+<div class="action" onclick="alert('خپل کاروبار ثبت کړئ، د اډمین تر تایید وروسته اعلانونه ثبتولی شئ.')"><span>❓</span>لارښود</div>
+</section>
+
+<section id="estate" class="section"><h2>🏠 رهنمایي معاملات</h2><div class="cards">
+<div class="card"><div class="icon">🏡</div><h3>عصري کور</h3><p>ولایت، ولسوالۍ، موقعیت، عکسونه او بشپړ معلومات</p><div class="price">3,250,000 AFN<br>$50,000 USD</div></div>
+<div class="card"><div class="icon">🌳</div><h3>ځمکه</h3><p>د ولایت او سیمې له مخې لټون</p><div class="price">1,950,000 AFN<br>$30,000 USD</div></div>
+<div class="card"><div class="icon">🏬</div><h3>دوکان / تجارتي ځای</h3><p>مستقیم د ثبتوونکي سره اړیکه</p><div class="price">6,500,000 AFN<br>$100,000 USD</div></div>
+</div></section>
+
+<section id="cars" class="section"><h2>🚗 موټر پلورنځی</h2><div class="cards">
+<div class="card"><div class="icon">🚙</div><h3>Toyota Land Cruiser</h3><p>ماډل، کال، رنګ، کیلومتر، ګیر، تېل او سټیرنګ</p><div class="price">4,550,000 AFN<br>$70,000 USD</div></div>
+<div class="card"><div class="icon">🚗</div><h3>Toyota Corolla</h3><p>راسته لاس / چپه لاس او بشپړ معلومات</p><div class="price">975,000 AFN<br>$15,000 USD</div></div>
+<div class="card"><div class="icon">🚘</div><h3>نور موټرونه</h3><p>د ولایت، ماډل او قیمت له مخې لټون</p><div class="price">AFN + USD</div></div>
+</div></section>
+</main>
+
+<footer><div class="install"><div><h2>📲 اپلیکیشن نصب کړئ</h2><p>اسحاقزاده آنلاین معاملات</p></div><button id="installBtn" class="green">نصب</button></div></footer>
+
+<div id="reg" class="modal"><div class="panel"><button onclick="closeM('reg')">✕</button><h2>د کاروبار ثبت</h2>
+<select id="rtype"><option value="estate">رهنمایي معاملات</option><option value="carshop">موټر پلورنځی</option></select>
+<input placeholder="د رهنمایي / موټر پلورنځي نوم"><input placeholder="د مالک نوم">
+<label>لوګو له ګالري څخه</label><input type="file" accept="image/*">
+<input placeholder="ولایت"><input placeholder="ولسوالي / مرکز"><input placeholder="WhatsApp شمېره"><input placeholder="د ټیلیفون شمېره">
+<select><option>جواز لرم</option><option>جواز نه لرم</option></select><input placeholder="د جواز نمبر">
+<label>د تذکرې مخ</label><input type="file" accept="image/*"><label>د تذکرې شا</label><input type="file" accept="image/*"><label>سلفي / شخصي عکس</label><input type="file" accept="image/*">
+<button class="green" onclick="submitReg()">د تایید لپاره واستوئ</button></div></div>
+
+<div id="ai" class="modal"><div class="panel"><button onclick="closeM('ai')">✕</button><h2>🤖 AI مرستیال</h2>
+<div id="chat" class="chat"><div class="msg">سلام! د اسحاقزاده آنلاین معاملات د استعمال، رهنمایي، موټر پلورنځي، ثبت او قیمتونو په اړه پوښتنه وکړئ.</div></div>
+<div class="search"><input id="ask" placeholder="پوښتنه ولیکئ..."><button class="blue" onclick="askAI()">پوښتنه</button></div></div></div>
+<script src="app.js"></script>
+</body></html>

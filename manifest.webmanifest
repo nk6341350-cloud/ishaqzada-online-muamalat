@@ -1,0 +1,9 @@
+{
+  "name": "Ishaqzada Online Muamalat",
+  "short_name": "Ishaqzada Muamalat",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4f8fc",
+  "theme_color": "#073a6b",
+  "icons": []
+}
