@@ -37,6 +37,15 @@ footer{background:linear-gradient(90deg,#05396c,#07599b);color:#fff;padding:24px
 .hero{height:300px}.heroText{width:100%;padding:28px 15px 0}.heroText h1{font-size:31px}.heroText h2{font-size:17px}.heroText p{font-size:13px}.heroText small{display:none}.trust b{padding:6px 9px;font-size:13px}.search{height:53px}.search button{padding:10px 17px}
 .villa{width:125px;height:96px;left:-35px;opacity:.35}.villa:before{width:160px}.villa .window,.villa .door{display:none}.suv{width:120px;height:42px;right:-30px;opacity:.35}.suv:before{width:65px;height:30px;left:25px;top:-25px}.suv i{width:24px;height:24px;bottom:-14px}
 .twins{grid-template-columns:1fr}.feature{height:145px;padding:17px}.round{width:70px;height:70px;font-size:36px}.feature h2{font-size:25px}.feature p{font-size:13px}.quick{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:1fr}.card{display:grid;grid-template-columns:125px 1fr}.visual{height:auto;min-height:128px}.houseArt{transform:scale(.65);left:0}.carArt{transform:scale(.68);left:-10px}.stats{grid-template-columns:1fr 1fr;gap:14px}footer{display:block;text-align:center}.stores{justify-content:center;flex-wrap:wrap}}
+
+.preDbBar{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:15px 0}
+.preDbBar button{border:0;border-radius:14px;padding:13px;background:#073d73;color:white;font-weight:900}
+.filterBar{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;background:white;padding:12px;border-radius:15px;margin-bottom:18px}
+.filterBar input,.filterBar select{padding:10px;border:1px solid #d3e0eb;border-radius:10px;min-width:0}
+.adminBtn{position:fixed;left:14px;bottom:18px;z-index:40;width:52px;height:52px;border:0;border-radius:50%;background:#073d73;color:white;font-size:21px;box-shadow:0 7px 22px #0018}
+.contactRow{display:flex;gap:6px;margin-top:8px}.contactRow button{flex:1;border:0;border-radius:9px;padding:8px;font-weight:900}.waBtn{background:#0a9b52;color:white}.phoneBtn{background:#e9f4ff;color:#075b9c}
+.adminEntry{border:1px solid #d9e5ee;border-radius:12px;padding:10px;margin:8px 0}.adminEntry button{border:0;border-radius:8px;padding:7px 11px;color:white;font-weight:900;margin:5px}.okBtn{background:#07863f}.noBtn{background:#b72e2e}
+@media(max-width:760px){.preDbBar{grid-template-columns:1fr 1fr}.filterBar{grid-template-columns:1fr 1fr}}
 </style>
 </head><body>
 <header class="header"><div class="brand"><div class="logo"><span class="roof"></span><span class="car">🚙</span></div><div class="brandText"><strong>اسحاقزاده آنلاین معاملات</strong><small>Ishaqzada Online Muamalat</small></div></div><nav><button class="active">⌂ کور</button><button onclick="jump('estate')">رهنمایي معاملات</button><button onclick="jump('cars')">موټر پلورنځی</button><button onclick="openReg()">د ثبت نام</button><button>درباره</button><button>اړیکه</button></nav><div class="actions"><button class="lang">🌐 PS⌄</button><button class="login" onclick="openReg()">👤 ثبتول</button></div></header>
@@ -47,15 +56,26 @@ footer{background:linear-gradient(90deg,#05396c,#07599b);color:#fff;padding:24px
 <main class="container"><section class="twins"><article class="feature estate"><div class="round">⌂</div><div><h2>رهنمایي معاملات</h2><p>کورونه، ځمکې، دوکانونه او نور جایدادونه</p><button onclick="jump('estate')">← مشاهده کړئ</button></div><div class="dec">⌂</div></article><article class="feature cars"><div class="round">🚘</div><div><h2>موټر پلورنځی</h2><p>نوي او کارول شوي موټرونه</p><button onclick="jump('cars')">← مشاهده کړئ</button></div><div class="dec">🚗🚙</div></article></section>
 <section class="quick"><button onclick="openReg('estate')"><i>👤＋</i><b>د رهنمایي ثبت</b><small>خپله اداره ثبت کړئ</small></button><button onclick="openReg('carshop')"><i>🏪</i><b>د موټر پلورنځي ثبت</b><small>خپل دوکان ثبت کړئ</small></button><button class="ai" onclick="openAI()"><i>🤖</i><b>AI مرستیال</b><small>هره پوښتنه دلته وپوښتئ</small></button><button onclick="q.focus()"><i>🔎</i><b>د اعلان لټون</b><small>خپل مطلوب اعلان پیدا کړئ</small></button><button><i>?</i><b>لارښود او مرسته</b><small>د استعمال طریقه زده کړئ</small></button></section>
 
+<section class="preDbBar">
+<button onclick="openAd('estate')">＋ د جایداد اعلان ثبت</button>
+<button onclick="openAd('car')">＋ د موټر اعلان ثبت</button>
+<button onclick="openAdmin()">⚙️ Admin</button>
+</section>
+<section class="filterBar">
+<select id="fType" onchange="filterAds()"><option value="">ټول</option><option value="estate">جایداد</option><option value="car">موټر</option></select>
+<input id="fProvince" placeholder="ولایت" oninput="filterAds()">
+<input id="fMin" type="number" placeholder="کم قیمت AFN" oninput="filterAds()">
+<input id="fMax" type="number" placeholder="لوړ قیمت AFN" oninput="filterAds()">
+</section>
 <section id="estate"><div class="sectionTitle"><h2>⌂ تازه رهنمایي اعلانونه</h2><span>نور وګورئ ←</span></div><div class="cards">
-<article class="card"><div class="visual houseScene"><span class="badge">د پلور</span><div class="houseArt"></div></div><div class="cardBody"><h3>مستقیم کور</h3><p>📍 کندهار • 4 خونې • 250 m²</p><b class="price">5,950,000 AFN<br>$85,000 USD</b></div></article>
-<article class="card"><div class="visual landScene"><span class="badge">د پلور</span></div><div class="cardBody"><h3>ځمکه</h3><p>📍 هرات • 500 m²</p><b class="price">2,800,000 AFN<br>$40,000 USD</b></div></article>
-<article class="card"><div class="visual shopScene"><span class="badge rent">د کرایې</span><div class="shopArt">▥</div></div><div class="cardBody"><h3>دوکان</h3><p>📍 تجارتي سیمه • 60 m²</p><b class="price">56,000 AFN / میاشت<br>$800 USD</b></div></article></div></section>
+<article class="card listingCard" data-type="estate" data-province="کندهار" data-price="5950000"><div class="visual houseScene"><span class="badge">د پلور</span><div class="houseArt"></div></div><div class="cardBody"><h3>مستقیم کور</h3><p>📍 کندهار • 4 خونې • 250 m²</p><b class="price">5,950,000 AFN<br>$85,000 USD</b></div></article>
+<article class="card listingCard" data-type="estate" data-province="هرات" data-price="2800000"><div class="visual landScene"><span class="badge">د پلور</span></div><div class="cardBody"><h3>ځمکه</h3><p>📍 هرات • 500 m²</p><b class="price">2,800,000 AFN<br>$40,000 USD</b></div></article>
+<article class="card listingCard" data-type="estate" data-province="کندهار" data-price="56000"><div class="visual shopScene"><span class="badge rent">د کرایې</span><div class="shopArt">▥</div></div><div class="cardBody"><h3>دوکان</h3><p>📍 تجارتي سیمه • 60 m²</p><b class="price">56,000 AFN / میاشت<br>$800 USD</b></div></article></div></section>
 
 <section id="cars"><div class="sectionTitle"><h2>🚘 تازه موټرونه</h2><span>نور وګورئ ←</span></div><div class="cards">
-<article class="card"><div class="visual carScene"><span class="badge">د پلور</span><div class="carArt"></div></div><div class="cardBody"><h3>Toyota Land Cruiser</h3><p>2022 • Diesel • 4.5L • کندهار</p><b class="price">5,040,000 AFN<br>$72,000 USD</b></div></article>
-<article class="card"><div class="visual carScene"><span class="badge">د پلور</span><div class="carArt"></div></div><div class="cardBody"><h3>Toyota Corolla</h3><p>2021 • Petrol • 1.8L • کابل</p><b class="price">1,820,000 AFN<br>$26,000 USD</b></div></article>
-<article class="card"><div class="visual carScene"><span class="badge rent">کارول شوی</span><div class="carArt"></div></div><div class="cardBody"><h3>Honda CR-V</h3><p>2019 • Petrol • 2.4L • هرات</p><b class="price">1,645,000 AFN<br>$23,500 USD</b></div></article></div></section>
+<article class="card listingCard" data-type="car" data-province="کندهار" data-price="5040000"><div class="visual carScene"><span class="badge">د پلور</span><div class="carArt"></div></div><div class="cardBody"><h3>Toyota Land Cruiser</h3><p>2022 • Diesel • 4.5L • کندهار</p><b class="price">5,040,000 AFN<br>$72,000 USD</b></div></article>
+<article class="card listingCard" data-type="car" data-province="کابل" data-price="1820000"><div class="visual carScene"><span class="badge">د پلور</span><div class="carArt"></div></div><div class="cardBody"><h3>Toyota Corolla</h3><p>2021 • Petrol • 1.8L • کابل</p><b class="price">1,820,000 AFN<br>$26,000 USD</b></div></article>
+<article class="card listingCard" data-type="car" data-province="هرات" data-price="1645000"><div class="visual carScene"><span class="badge rent">کارول شوی</span><div class="carArt"></div></div><div class="cardBody"><h3>Honda CR-V</h3><p>2019 • Petrol • 2.4L • هرات</p><b class="price">1,645,000 AFN<br>$23,500 USD</b></div></article></div></section>
 <section class="stats"><div>👥 <b>+1,250</b><small>فعال کاروونکي</small></div><div>▥ <b>+850</b><small>رهنمایي اعلانونه</small></div><div>🚘 <b>+620</b><small>موټر اعلانونه</small></div><div>🛡️ <b>100%</b><small>با اعتماد سیستم</small></div></section></main>
 
 <footer><div><h2>ستاسو د ښه سبا لپاره</h2><p>اسحاقزاده آنلاین معاملات — مطمئن، سریع، با اعتماد</p></div><div class="stores"><button id="installBtn" class="android">🤖 Android<br><b>اپلیکیشن نصب کړئ</b></button><button class="apple" onclick="iosHelp()">● iPhone<br><b>App نصب کړئ</b></button></div></footer>
@@ -63,17 +83,61 @@ footer{background:linear-gradient(90deg,#05396c,#07599b);color:#fff;padding:24px
 <div id="reg" class="modal"><div class="panel"><button class="x" onclick="closeBox('reg')">✕</button><h2>د کاروبار ثبت</h2><select id="rtype"><option value="estate">رهنمایي معاملات</option><option value="carshop">موټر پلورنځی</option></select><input placeholder="د کاروبار نوم"><input placeholder="د مالک نوم"><label>لوګو</label><input type="file" accept="image/*"><input placeholder="ولایت"><input placeholder="ولسوالي / مرکز"><input placeholder="WhatsApp شمېره"><input placeholder="د ټیلیفون شمېره"><select><option>جواز لرم</option><option>جواز نه لرم</option></select><input placeholder="د جواز نمبر"><label>د تذکرې مخ</label><input type="file" accept="image/*"><label>د تذکرې شا</label><input type="file" accept="image/*"><label>سلفي</label><input type="file" accept="image/*"><button class="submit" onclick="submitReg()">د اډمین تایید ته واستوئ</button></div></div>
 <div id="aiBox" class="modal"><div class="panel"><button class="x" onclick="closeBox('aiBox')">✕</button><h2>🤖 AI مرستیال</h2><div id="chat" class="chat"><div class="bubble">سلام! د اسحاقزاده آنلاین معاملات په اړه هره پوښتنه وکړئ.</div></div><input id="ask" placeholder="پوښتنه ولیکئ"><button class="submit" onclick="askAI()">پوښتنه</button></div></div>
 
+
+<div id="adBox" class="modal"><div class="panel"><button class="x" onclick="closeBox('adBox')">✕</button>
+<h2 id="adHeading">اعلان ثبت</h2>
+<input id="adKind" type="hidden">
+<input id="adName" placeholder="د اعلان نوم">
+<input id="adProvince" placeholder="ولایت">
+<input id="adArea" placeholder="ولسوالي / سیمه">
+<input id="adPrice" type="number" placeholder="قیمت په AFN">
+<input id="adUsd" type="number" placeholder="قیمت په USD">
+<div id="estateExtra"><select id="estateType"><option>کور</option><option>ځمکه</option><option>دوکان</option><option>اپارتمان</option><option>نور</option></select><input id="estateSize" placeholder="مساحت m²"><input id="estateRooms" placeholder="د خونو شمېر"></div>
+<div id="carExtra" style="display:none"><input id="carModel" placeholder="کمپني / موډل"><input id="carYear" placeholder="کال"><select id="carFuel"><option>Petrol</option><option>Diesel</option><option>Hybrid</option><option>Electric</option></select><select id="carGear"><option>Automatic</option><option>Manual</option></select><select id="carSteer"><option>چپه لاس سټیرنګ</option><option>راسته لاس سټیرنګ</option></select><input id="carKm" placeholder="Mileage / کیلومتر"></div>
+<input id="adWa" placeholder="WhatsApp شمېره"><input id="adPhone" placeholder="د ټیلیفون شمېره">
+<label>عکسونه<input id="adPics" type="file" accept="image/*" multiple></label>
+<textarea id="adDescription" style="width:100%;padding:11px;border:1px solid #ccd9e5;border-radius:10px;margin:7px 0" placeholder="تشریح"></textarea>
+<button class="submit" onclick="saveAd()">د Admin تایید ته واستوئ</button></div></div>
+
+<div id="adminBox" class="modal"><div class="panel"><button class="x" onclick="closeBox('adminBox')">✕</button><h2>⚙️ Admin</h2>
+<div id="pinBox"><input id="adminPin" inputmode="numeric" type="password" placeholder="PIN"><button class="submit" onclick="adminLogin()">داخلېدل</button></div>
+<div id="adminContent" style="display:none"><h3>د تایید انتظار</h3><div id="adminList"></div><button class="submit" onclick="adminLogout()">وتل</button></div>
+</div></div><button class="adminBtn" onclick="openAdmin()">⚙️</button>
 <script>
 let deferredPrompt;
 addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e});
 if("serviceWorker"in navigator)navigator.serviceWorker.register("./sw.js");
 function jump(x){document.getElementById(x).scrollIntoView({behavior:"smooth"})}
-function openReg(t){document.getElementById("reg").classList.add("on");if(t)document.getElementById("rtype").value=t}
+function openReg(t){
+  document.getElementById("reg").classList.add("on");
+  const sel=document.getElementById("rtype");
+  if(t) sel.value=t;
+  sel.style.display="none";
+  let lab=document.getElementById("regTypeLabel");
+  if(!lab){
+    lab=document.createElement("div"); lab.id="regTypeLabel";
+    lab.style.cssText="background:#edf6ff;border:1px solid #bdd8ec;padding:12px;border-radius:12px;margin:8px 0 14px;font-weight:900";
+    sel.parentNode.insertBefore(lab,sel);
+  }
+  lab.textContent=t==="carshop"?"موټر پلورنځی":"رهنمایي معاملات";
+}
 function openAI(){document.getElementById("aiBox").classList.add("on")}
 function closeBox(x){document.getElementById(x).classList.remove("on")}
-function submitReg(){alert("ستاسو معلومات د اډمین تایید ته واستول شول.");closeBox("reg")}
+function submitReg(){let type=document.getElementById("rtype").value,biz=(document.querySelector('#reg input[placeholder="د کاروبار نوم"]')||{}).value||"",owner=(document.querySelector('#reg input[placeholder="د مالک نوم"]')||{}).value||"";if(!biz.trim()||!owner.trim())return alert("د کاروبار نوم او د مالک نوم ولیکئ.");let d=localData();d.business.unshift({id:Date.now(),type,biz,owner,status:"pending"});saveLocal(d);alert("ستاسو معلومات د Admin تایید ته واستول شول.");closeBox("reg")}
 function doSearch(){let v=document.getElementById("q").value.trim();alert(v?"لټون: "+v:"د لټون کلمه ولیکئ.")}
 function askAI(){let a=document.getElementById("ask"),v=a.value.trim();if(!v)return;document.getElementById("chat").innerHTML+=`<div class="bubble"><b>تاسو:</b> ${v}</div><div class="bubble"><b>AI:</b> په دې اپ کې رهنمایي معاملات او موټر پلورنځی دواړه شته. قیمتونه په AFN او USD دواړو ښودل کېږي.</div>`;a.value=""}
 document.getElementById("installBtn").onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null}else alert("په Android کې Install App وکاروئ.")};
 function iosHelp(){alert("په iPhone کې Share بیا Add to Home Screen ووهئ.")}
+
+const LOCALKEY="ishaqzada_muamalat_pre_database";
+function localData(){try{return JSON.parse(localStorage.getItem(LOCALKEY))||{business:[],ads:[]}}catch(e){return{business:[],ads:[]}}}
+function saveLocal(d){localStorage.setItem(LOCALKEY,JSON.stringify(d))}
+function openAd(kind){adBox.classList.add("on");adKind.value=kind;adHeading.textContent=kind==="car"?"د موټر اعلان ثبت":"د جایداد اعلان ثبت";estateExtra.style.display=kind==="estate"?"block":"none";carExtra.style.display=kind==="car"?"block":"none"}
+function saveAd(){if(!adName.value.trim()||!adProvince.value.trim()||!adPrice.value)return alert("د اعلان نوم، ولایت او قیمت ضروري دي.");let d=localData();d.ads.unshift({id:Date.now(),kind:adKind.value,name:adName.value,province:adProvince.value,area:adArea.value,afn:+adPrice.value,usd:+adUsd.value||0,wa:adWa.value,phone:adPhone.value,model:carModel.value,year:carYear.value,fuel:carFuel.value,gear:carGear.value,steer:carSteer.value,km:carKm.value,estateType:estateType.value,size:estateSize.value,rooms:estateRooms.value,status:"pending"});saveLocal(d);alert("اعلان د Admin تایید ته واستول شو.");closeBox("adBox")}
+function filterAds(){let t=fType.value,p=fProvince.value.trim(),mn=+fMin.value||0,mx=+fMax.value||Infinity;document.querySelectorAll(".listingCard").forEach(c=>{let ok=(!t||c.dataset.type===t)&&(!p||c.dataset.province.includes(p))&&(+c.dataset.price>=mn&&+c.dataset.price<=mx);c.style.display=ok?"":"none"})}
+function openAdmin(){adminBox.classList.add("on");if(sessionStorage.getItem("muAdmin")==="1"){pinBox.style.display="none";adminContent.style.display="block";renderAdmin()}}
+function adminLogin(){if(adminPin.value==="111111"){sessionStorage.setItem("muAdmin","1");pinBox.style.display="none";adminContent.style.display="block";renderAdmin()}else alert("PIN ناسم دی.")}
+function adminLogout(){sessionStorage.removeItem("muAdmin");adminContent.style.display="none";pinBox.style.display="block"}
+function renderAdmin(){let d=localData(),all=[...d.business.map(x=>({...x,_g:"business"})),...d.ads.map(x=>({...x,_g:"ads"}))];adminList.innerHTML=all.length?all.map(x=>`<div class="adminEntry"><b>${x.biz||x.name||"ثبت"}</b><br><small>${x.province||""} — ${x.status||"pending"}</small><br><button class="okBtn" onclick="setAdmin('${x._g}',${x.id},'approved')">تایید</button><button class="noBtn" onclick="setAdmin('${x._g}',${x.id},'rejected')">رد</button></div>`).join(""):"تر اوسه نوی ثبت نشته."}
+function setAdmin(g,id,s){let d=localData(),x=d[g].find(v=>v.id===id);if(x)x.status=s;saveLocal(d);renderAdmin()}
 </script></body></html>
